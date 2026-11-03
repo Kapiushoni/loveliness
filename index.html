@@ -1,3 +1,8 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Loveliness Atelier</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="LOVELINESS — офіційний цифровий ательє та лукбук: сукні, прикраси й косметика в єдиній естетиці.">
@@ -37,6 +42,7 @@ html.lenis,html.lenis body{height:auto}
 [hidden]{display:none!important}
 html{scroll-padding-top:calc(var(--header-h) + 8px)}
 body{
+  margin:0;
   background:var(--alabaster);color:var(--obsidian);
   font-family:var(--sans);font-size:15px;line-height:1.65;
   -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
@@ -349,7 +355,8 @@ em{font-style:italic}
   *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}
 }
 </style>
-
+</head>
+<body>
 <div class="grain" aria-hidden="true"></div>
 
 <header class="site-header" id="top">
@@ -934,8 +941,9 @@ const PILLARS = [
   const headerH = () => $('.site-header').offsetHeight;
   const scrollToEl = el => {
     if (!el) return;
-    if (lenis) lenis.scrollTo(el, { offset: -headerH(), duration: 1.4 });
-    else window.scrollTo({ top: el.getBoundingClientRect().top + scrollY - headerH(), behavior: reduce ? 'auto' : 'smooth' });
+    const y = el.id === 'hero' ? 0 : Math.max(0, Math.round(el.getBoundingClientRect().top + scrollY - headerH()));
+    if (lenis) { lenis.resize(); lenis.scrollTo(y, { duration: 1.2, force: true }); }
+    else window.scrollTo({ top: y, behavior: reduce ? 'auto' : 'smooth' });
   };
   document.addEventListener('click', e => {
     const a = e.target.closest('a[data-scroll]');
@@ -1238,3 +1246,5 @@ const PILLARS = [
   }
 })();
 </script>
+</body>
+</html>
