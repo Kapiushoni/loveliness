@@ -1,0 +1,1240 @@
+<title>Loveliness Atelier</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="LOVELINESS — офіційний цифровий ательє та лукбук: сукні, прикраси й косметика в єдиній естетиці.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap">
+
+<style>
+/* Layout: 12-col editorial grid, asymmetric — headings left, narrow text columns right, staggered image frames. One dark band (philosophy). */
+:root{
+  --alabaster:#F7F4EF;      /* bg primary — raw silk */
+  --paper:#EFEAE2;          /* tinted alabaster for empty frames */
+  --obsidian:#141312;       /* bg dark / text primary */
+  --taupe:#6E6A64;          /* text muted */
+  --bronze:#8C735B;         /* accent — champagne bronze */
+  --line:rgba(20,19,18,.12);
+  --line-strong:rgba(20,19,18,.28);
+  --line-dark:rgba(247,244,239,.16);
+  --muted-dark:rgba(247,244,239,.58);
+  --header-bg:rgba(247,244,239,.74);
+
+  --display:'Cormorant Garamond','Cormorant',Garamond,'Times New Roman',Georgia,serif;
+  --sans:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+
+  --ease:cubic-bezier(0.16,1,0.3,1);
+  --gutter:max(clamp(16px,4.2vw,64px),env(safe-area-inset-left,0px));
+  --gutter-r:max(clamp(16px,4.2vw,64px),env(safe-area-inset-right,0px));
+  --header-h:64px;
+  color-scheme:light;
+}
+
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lenis.lenis-stopped{overflow:hidden}
+
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-padding-top:calc(var(--header-h) + 8px)}
+body{
+  background:var(--alabaster);color:var(--obsidian);
+  font-family:var(--sans);font-size:15px;line-height:1.65;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--alabaster)}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+em{font-style:italic}
+:focus-visible{outline:1px solid var(--bronze);outline-offset:4px}
+::selection{background:var(--obsidian);color:var(--alabaster)}
+
+/* grain */
+.grain{position:fixed;inset:-50%;width:200%;height:200%;pointer-events:none;z-index:100;opacity:.03;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");}
+
+.wrap{padding-left:var(--gutter);padding-right:var(--gutter-r);max-width:1520px;margin-inline:auto}
+.grid-12{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(12px,2vw,28px)}
+
+/* type scale */
+.label{font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;line-height:1.4}
+.label--muted{color:var(--taupe)}
+.label--accent{color:var(--bronze)}
+.display{font-family:var(--display);font-weight:300;line-height:.98;letter-spacing:-.01em;text-wrap:balance}
+.display em{font-weight:300;color:var(--bronze)}
+.d-xl{font-size:clamp(2.9rem,11.2vw,7.4rem)}
+.d-l{font-size:clamp(2.3rem,6.2vw,5.2rem)}
+.d-m{font-size:clamp(1.9rem,4vw,3.3rem)}
+.d-s{font-size:clamp(1.45rem,2.3vw,1.9rem);line-height:1.08}
+.body-text{font-size:15px;line-height:1.75;color:var(--obsidian);max-width:62ch}
+.body-text p+p{margin-top:1.1em}
+.muted{color:var(--taupe)}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:.9em;padding:18px 26px;border:1px solid var(--obsidian);border-radius:0;
+  font-size:11px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;line-height:1;
+  transition:background .6s var(--ease),color .6s var(--ease)}
+.btn:hover{background:var(--obsidian);color:var(--alabaster)}
+.btn--light{border-color:var(--alabaster);color:var(--alabaster)}
+.btn--light:hover{background:var(--alabaster);color:var(--obsidian)}
+.btn--solid{background:var(--obsidian);color:var(--alabaster)}
+.btn--solid:hover{background:var(--bronze);border-color:var(--bronze)}
+.link-u{position:relative;display:inline-block}
+.link-u::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .7s var(--ease)}
+.link-u:hover::after,.link-u[aria-current="true"]::after{transform:scaleX(1);transform-origin:left}
+
+/* ───────── header ───────── */
+.site-header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;height:var(--header-h);
+  background:var(--header-bg);-webkit-backdrop-filter:blur(12px) saturate(1.1);backdrop-filter:blur(12px) saturate(1.1);
+  border-bottom:1px solid var(--line)}
+.header-inner{height:100%;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px}
+.nav-left{display:flex;gap:28px}
+.nav-left a,.ig-link,.menu-btn{font-size:11px;font-weight:500;letter-spacing:.15em;text-transform:uppercase}
+.logo{font-family:var(--display);font-weight:400;font-size:21px;letter-spacing:.28em;margin-right:-.28em;line-height:1;white-space:nowrap}
+.ig-link{justify-self:end;white-space:nowrap}
+.menu-btn{display:none;justify-self:start}
+
+.m-menu{position:fixed;inset:0;z-index:80;background:var(--obsidian);color:var(--alabaster);
+  padding:calc(env(safe-area-inset-top,0px) + 20px) var(--gutter-r) calc(env(safe-area-inset-bottom,0px) + 28px) var(--gutter);
+  display:flex;flex-direction:column;justify-content:space-between}
+.m-menu__top{display:flex;justify-content:space-between;align-items:center}
+.m-menu__links{display:flex;flex-direction:column;gap:6px}
+.m-menu__links a{font-family:var(--display);font-weight:300;font-size:clamp(2.6rem,12vw,4rem);line-height:1.05;display:flex;align-items:baseline;gap:14px}
+.m-menu__links a span{font-family:var(--sans);font-size:11px;letter-spacing:.15em;color:var(--muted-dark)}
+
+/* ───────── hero ───────── */
+.hero{min-height:calc(100svh - var(--header-h));display:flex;position:relative;overflow:hidden;isolation:isolate}
+/* background brand mark: lily cut from the logo, used as a mask over a gold-foil gradient */
+.hero-mark{position:absolute;pointer-events:none;
+  width:min(64vw,940px);height:auto;right:-3vw;top:52%;translate:0 -50%;opacity:.22;user-select:none}
+.hero-mark__wrap{position:absolute;inset:0;z-index:-1;pointer-events:none}
+.hero-grid{width:100%;padding-block:clamp(28px,5vh,64px) clamp(32px,6vh,72px);align-content:space-between;row-gap:clamp(28px,4vh,48px)}
+.hero-top{grid-column:1/-1;display:flex;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line);padding-bottom:14px}
+.hero-title{grid-column:1/10;grid-row:2;align-self:start;font-size:clamp(2.9rem,9.4vw,8rem)}
+.hero-title .line{display:block;overflow:hidden;padding-bottom:.06em;margin-bottom:-.06em}
+.hero-title .line>span{display:inline-block;will-change:transform}
+.hero-title .t-caps{font-weight:400;letter-spacing:.06em;font-size:.78em}
+
+.frame{position:relative;overflow:hidden;background:var(--paper)}
+.frame img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+
+.fig-cap{display:flex;justify-content:space-between;gap:12px;padding-top:12px;border-top:1px solid var(--line);margin-top:12px}
+.hero-foot{grid-column:1/6;grid-row:3;align-self:end;display:flex;flex-direction:column;gap:28px;align-items:flex-start}
+.hero-foot .lead{font-size:16px;line-height:1.7;max-width:40ch;color:var(--taupe)}
+.hero-index{grid-column:6/8;grid-row:3;align-self:end;display:flex;flex-direction:column;gap:8px;padding-left:16px;border-left:1px solid var(--line)}
+.hero-index a{display:flex;justify-content:space-between;gap:12px}
+
+/* ───────── story ───────── */
+.section{padding-block:clamp(88px,14vw,180px)}
+.story-aside{grid-column:1/5}
+.story-aside__inner{position:sticky;top:calc(var(--header-h) + env(safe-area-inset-top,0px) + 32px);display:flex;flex-direction:column;gap:28px}
+.emblem{width:132px;mix-blend-mode:multiply;opacity:.9}
+.story-main{grid-column:5/13;display:flex;flex-direction:column;gap:clamp(40px,6vw,72px)}
+.story-cols{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));column-gap:clamp(12px,2vw,28px)}
+.story-cols .body-text{grid-column:3/8}
+.story-cols .dropcap::first-letter{font-family:var(--display);float:left;font-size:4.6em;line-height:.82;padding:.06em .1em 0 0;color:var(--bronze)}
+.pull{margin:0;grid-column:1/8;border-top:1px solid var(--line-strong);padding-top:28px;display:grid;grid-template-columns:minmax(0,1fr);gap:16px}
+.pull p{font-family:var(--display);font-weight:300;font-size:clamp(1.8rem,3.6vw,3rem);line-height:1.04;text-wrap:balance}
+.pull p em{color:var(--bronze)}
+
+/* ───────── philosophy (dark) ───────── */
+.dark{background:var(--obsidian);color:var(--alabaster)}
+.dark .label--muted{color:var(--muted-dark)}
+.dark .display em{color:#B49A80}
+.phil-head{align-items:end;row-gap:28px;margin-bottom:clamp(48px,7vw,96px)}
+.phil-head .label{grid-column:1/5;align-self:start}
+.phil-head h2{grid-column:5/13}
+.pillars{border-top:1px solid var(--line-dark)}
+.pillar{border-bottom:1px solid var(--line-dark);padding-block:clamp(26px,3.4vw,44px);align-items:baseline;row-gap:14px;position:relative}
+.pillar__num{grid-column:1/3;font-family:var(--display);font-size:clamp(1.1rem,1.6vw,1.4rem);font-style:italic;color:#B49A80}
+.pillar__title{grid-column:3/8}
+.pillar__title h3{font-family:var(--display);font-weight:300;font-size:clamp(1.9rem,3.4vw,3rem);line-height:1;transition:transform 1s var(--ease)}
+.pillar__title .label{display:block;margin-top:12px}
+.pillar__text{grid-column:8/13;color:var(--muted-dark);font-size:15px;line-height:1.75;max-width:46ch}
+.pillar:hover h3{transform:translateX(14px)}
+
+/* ───────── universe ───────── */
+.uni-head{row-gap:28px;align-items:end}
+.uni-head .label{grid-column:1/5;align-self:start}
+.uni-head h2{grid-column:5/13}
+.tabs{display:flex;flex-wrap:wrap;gap:4px clamp(18px,3vw,48px);margin-top:clamp(48px,6vw,80px);border-bottom:1px solid var(--line);position:relative}
+.tab{position:relative;padding:0 0 16px;display:flex;align-items:baseline;color:rgba(20,19,18,.38);transition:color .9s var(--ease)}
+.tab__name{font-family:var(--display);font-weight:500;font-size:clamp(1.7rem,3.4vw,2.7rem);line-height:1.05;letter-spacing:.005em;
+  text-rendering:geometricPrecision;font-kerning:normal;font-feature-settings:"kern","liga";-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+.tab[aria-selected="true"]{color:var(--obsidian)}
+.tab:hover{color:var(--obsidian)}
+.tabs__ink{position:absolute;bottom:-1px;left:0;height:1px;background:var(--obsidian);transition:transform .9s var(--ease),width .9s var(--ease)}
+.cat-intro{margin-top:clamp(32px,4vw,56px);row-gap:16px;align-items:start}
+.cat-intro__idx{grid-column:1/5;display:flex;flex-direction:column;gap:8px}
+.cat-intro__text{grid-column:5/11;font-family:var(--display);font-weight:300;font-size:clamp(1.5rem,2.8vw,2.3rem);line-height:1.1;text-wrap:balance}
+.cat-intro__text em{color:var(--bronze)}
+
+.bento{margin-top:clamp(40px,6vw,88px);row-gap:clamp(48px,6vw,96px);align-items:start}
+.item{min-width:0}
+.item__btn{display:block;width:100%;text-align:left;cursor:zoom-in}
+.item .frame{width:100%}
+.item:hover .frame img,.item__btn:focus-visible .frame img{transform:scale(1.03)}
+.item__cap{display:grid;grid-template-columns:minmax(0,auto) minmax(0,1fr);column-gap:20px;row-gap:6px;padding-top:14px;margin-top:14px;border-top:1px solid var(--line)}
+.item__code{grid-row:1/3;white-space:nowrap}
+.item__title{font-family:var(--display);font-size:clamp(1.35rem,1.9vw,1.65rem);font-style:italic;font-weight:400;line-height:1.1}
+.item__desc{font-size:13.5px;line-height:1.65;color:var(--taupe);max-width:52ch}
+.item__meta{grid-column:2;display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:4px}
+
+/* bento slots (repeat every 4) */
+.slot-0{grid-column:1/9}
+.slot-0 .frame{aspect-ratio:16/9}
+.slot-1{grid-column:9/13;margin-top:clamp(80px,12vw,200px)}
+.slot-1 .frame{aspect-ratio:3/4}
+.slot-2{grid-column:2/7}
+.slot-2 .frame{aspect-ratio:4/5}
+.slot-3{grid-column:7/13;margin-top:clamp(40px,8vw,140px)}
+.slot-3 .frame{aspect-ratio:16/9}
+.bento-quote{grid-column:2/7;align-self:start;padding-top:28px;border-top:1px solid var(--line-strong)}
+.bento-quote p{font-family:var(--display);font-weight:300;font-size:clamp(1.6rem,2.6vw,2.2rem);line-height:1.08;text-wrap:balance}
+.bento-quote p em{color:var(--bronze)}
+
+/* placeholder frame (no photo yet) */
+.ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;border:1px solid var(--line);background:var(--paper)}
+.ph img{width:min(42%,170px);height:auto;object-fit:contain;mix-blend-mode:multiply;opacity:.55}
+.ph .label{color:var(--taupe)}
+
+/* reel */
+.reel{margin-top:clamp(88px,10vw,140px)}
+.reel__head{display:flex;justify-content:space-between;align-items:end;gap:16px;border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:24px}
+.reel__ctrl{display:flex;gap:8px}
+.reel__ctrl button{width:44px;height:44px;border:1px solid var(--line-strong);display:grid;place-items:center;font-size:15px;transition:background .5s var(--ease),color .5s var(--ease)}
+.reel__ctrl button:hover{background:var(--obsidian);color:var(--alabaster)}
+.reel__track{display:flex;gap:clamp(12px,1.6vw,22px);overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;
+  padding-bottom:4px;overscroll-behavior-x:contain;cursor:grab}
+.reel__track::-webkit-scrollbar{display:none}
+.reel__track.is-drag{cursor:grabbing;scroll-snap-type:none}
+@media (hover:hover) and (pointer:fine){.reel__track{scroll-snap-type:none}}
+.reel__item{flex:0 0 clamp(220px,24vw,320px);scroll-snap-align:start}
+.reel__item .frame{aspect-ratio:3/4}
+.reel__item .item__cap{grid-template-columns:minmax(0,1fr)}
+.reel__item .item__code{grid-row:auto}
+.reel__progress{height:1px;background:var(--line);margin-top:20px;position:relative;overflow:hidden}
+.reel__progress span{position:absolute;inset:0;background:var(--obsidian);transform-origin:left;transform:scaleX(.2)}
+
+/* ───────── complete look ───────── */
+.look{border-top:1px solid var(--line)}
+.look-head{row-gap:24px;margin-bottom:clamp(48px,6vw,80px)}
+.look-head .label{grid-column:1/5}
+.look-head p{grid-column:5/13}
+.formula{display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) auto minmax(0,1.4fr);align-items:stretch;border-top:1px solid var(--line-strong);border-bottom:1px solid var(--line-strong)}
+.term{display:flex;flex-direction:column;justify-content:space-between;gap:24px;padding:28px clamp(12px,2vw,28px) 24px 0;text-align:left;position:relative}
+.term+.term{padding-left:clamp(12px,2vw,28px);border-left:1px solid var(--line)}
+.term__op{position:absolute;right:-.42em;top:22px;font-family:var(--display);font-size:clamp(1.6rem,2.6vw,2.4rem);color:var(--bronze);background:var(--alabaster);line-height:1;padding:0 .12em;z-index:1}
+.term__word{font-family:var(--display);font-weight:300;font-size:clamp(1.9rem,3.1vw,3rem);line-height:.95;transition:color .6s var(--ease)}
+.term:hover .term__word{color:var(--bronze)}
+.term .label{display:flex;justify-content:space-between;gap:8px}
+.eq{display:flex;align-items:center;padding:0 clamp(12px,2vw,28px);border-left:1px solid var(--line);font-family:var(--display);font-size:clamp(2rem,4.2vw,3.8rem);color:var(--bronze);font-weight:300}
+.result{background:var(--obsidian);color:var(--alabaster);padding:28px clamp(16px,2.4vw,32px) 24px;display:flex;flex-direction:column;justify-content:space-between;gap:24px}
+.result__word{font-family:var(--display);font-weight:300;font-size:clamp(1.7rem,3vw,2.7rem);line-height:1}
+.result__word em{color:#B49A80}
+.result .label{color:var(--muted-dark)}
+.look-cta{margin-top:clamp(56px,7vw,96px);row-gap:32px;align-items:end}
+.look-cta__text{grid-column:1/8;font-family:var(--display);font-weight:300;font-size:clamp(1.7rem,3.2vw,2.6rem);line-height:1.08;text-wrap:balance}
+.look-cta__text em{color:var(--bronze)}
+.look-cta__side{grid-column:9/13;display:flex;flex-direction:column;gap:20px}
+.stat{display:flex;align-items:baseline;gap:14px;border-top:1px solid var(--line);padding-top:16px}
+.stat b{font-family:var(--display);font-weight:300;font-size:3.4rem;line-height:.9;font-variant-numeric:tabular-nums}
+.btn-row{display:flex;flex-wrap:wrap;gap:10px}
+
+/* ───────── footer ───────── */
+.footer{background:var(--obsidian);color:var(--alabaster);padding-top:clamp(64px,9vw,120px);padding-bottom:calc(env(safe-area-inset-bottom,0px) + 28px);overflow:hidden}
+.foot-grid{row-gap:36px;padding-bottom:clamp(40px,6vw,80px)}
+.foot-col{display:flex;flex-direction:column;gap:12px}
+.foot-col:nth-child(1){grid-column:1/5}
+.foot-col:nth-child(2){grid-column:6/9}
+.foot-col:nth-child(3){grid-column:9/13}
+.foot-col .label--muted{margin-bottom:6px}
+.foot-col a{font-family:var(--display);font-size:1.6rem;font-weight:300;line-height:1.15;width:fit-content}
+.foot-col p{color:var(--muted-dark);font-size:14px;max-width:34ch}
+.wordmark{font-family:var(--display);font-weight:300;font-size:15vw;line-height:.78;letter-spacing:-.015em;white-space:nowrap;text-align:left;
+  padding-left:max(1vw,env(safe-area-inset-left,0px));padding-top:.06em;user-select:none}
+.foot-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;border-top:1px solid var(--line-dark);padding-top:18px;margin-top:clamp(20px,3vw,40px)}
+
+/* ───────── lightbox ───────── */
+.lb{position:fixed;inset:0;z-index:90;background:var(--alabaster);display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.lb__stage{position:relative;background:var(--paper);display:grid;place-items:center;overflow:hidden;touch-action:pan-y;padding:clamp(16px,3vw,48px)}
+.lb__stage img{max-width:100%;max-height:100%;object-fit:contain;user-select:none;-webkit-user-drag:none}
+.lb__stage .ph{position:relative;inset:auto;width:min(100%,520px);aspect-ratio:3/4}
+.lb__count{position:absolute;left:max(20px,env(safe-area-inset-left,0px));bottom:18px}
+.lb__nav{position:absolute;right:20px;bottom:12px;display:flex;gap:8px}
+.lb__nav button{width:48px;height:48px;border:1px solid var(--line-strong);background:var(--alabaster);display:grid;place-items:center;font-size:16px;transition:background .5s var(--ease),color .5s var(--ease)}
+.lb__nav button:hover{background:var(--obsidian);color:var(--alabaster)}
+.lb__panel{overflow-y:auto;overscroll-behavior:contain;padding:28px max(28px,env(safe-area-inset-right,0px)) 36px clamp(24px,3vw,48px);display:flex;flex-direction:column;gap:28px;border-left:1px solid var(--line)}
+.lb__bar{display:flex;justify-content:space-between;align-items:center;gap:16px}
+.lb__close{font-size:11px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;padding:10px 0}
+.lb__title{font-family:var(--display);font-weight:300;font-size:clamp(2.3rem,4vw,3.6rem);line-height:.98}
+.lb__title em{color:var(--bronze)}
+.lb__specs{display:grid;grid-template-columns:auto minmax(0,1fr);border-top:1px solid var(--line)}
+.lb__specs dt,.lb__specs dd{margin:0;padding:12px 0;border-bottom:1px solid var(--line)}
+.lb__specs dt{padding-right:24px}
+.lb__specs dd{font-size:14px}
+.pairs{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+.pair{display:grid;grid-template-columns:56px minmax(0,1fr) auto;gap:16px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line);text-align:left;width:100%}
+.pair__thumb{width:56px;aspect-ratio:3/4;background:var(--paper);overflow:hidden;position:relative}
+.pair__thumb img{width:100%;height:100%;object-fit:cover}
+.pair__thumb .ph{border:0}
+.pair__name{font-family:var(--display);font-style:italic;font-size:1.3rem;line-height:1.1}
+.pair:hover .pair__name{color:var(--bronze)}
+.lb__cta{margin-top:auto;display:flex;flex-direction:column;gap:12px}
+.lb__cta .btn{justify-content:center;width:100%}
+
+/* reveal helper */
+.rv{will-change:transform,opacity}
+
+/* ───────── responsive ───────── */
+@media (max-width:1023px){
+  .nav-left{display:none}
+  .menu-btn{display:block}
+  .hero-title{grid-column:1/-1;grid-row:auto}
+  .hero-mark{width:96vw;right:2vw;top:50%;opacity:.18}
+  .hero-foot{grid-column:1/-1;grid-row:auto}
+  .hero-index{display:none}
+  .story-aside,.story-main{grid-column:1/-1}
+  .story-aside__inner{position:static;flex-direction:row;align-items:center;justify-content:space-between}
+  .emblem{width:96px}
+  .story-cols .body-text{grid-column:1/-1}
+  .pull{grid-column:1/-1}
+  .phil-head .label,.phil-head h2,.uni-head .label,.uni-head h2,.look-head .label,.look-head p{grid-column:1/-1}
+  .pillar__num{grid-column:1/3}
+  .pillar__title{grid-column:3/-1}
+  .pillar__text{grid-column:3/-1}
+  .cat-intro__idx,.cat-intro__text{grid-column:1/-1}
+  .look-cta__text,.look-cta__side{grid-column:1/-1}
+  .formula{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .eq{display:none}
+  .result{grid-column:1/-1}
+  .result__word::before{content:"= ";color:#B49A80}
+  .foot-col:nth-child(n){grid-column:1/-1}
+  .lb{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,52svh) minmax(0,1fr)}
+  .lb__panel{border-left:0;border-top:1px solid var(--line);padding-left:var(--gutter);padding-right:var(--gutter-r)}
+}
+@media (max-width:767px){
+  :root{--header-h:56px}
+  .logo{font-size:17px;letter-spacing:.22em;margin-right:-.22em}
+  .hero-top .label:last-child{display:none}
+  .hero-mark{width:118vw;right:-9vw;top:50%;opacity:.16}
+  .bento{row-gap:44px}
+  .slot-0,.slot-3{grid-column:1/-1;margin-top:0}
+  .slot-1{grid-column:1/7;margin-top:0}
+  .slot-2{grid-column:7/-1;margin-top:64px}
+  .slot-1 .frame,.slot-2 .frame{aspect-ratio:3/4}
+  .slot-1 .item__cap,.slot-2 .item__cap{grid-template-columns:minmax(0,1fr)}
+  .slot-1 .item__code,.slot-2 .item__code{grid-row:auto}
+  .slot-1 .item__desc,.slot-2 .item__desc{display:none}
+  .slot-1 .item__meta,.slot-2 .item__meta{grid-column:1}
+  .bento-quote{grid-column:1/-1;margin-top:0}
+  .item__cap{grid-template-columns:minmax(0,1fr)}
+  .item__code{grid-row:auto}
+  .item__meta{grid-column:1}
+  .reel__ctrl{display:none}
+  .reel__item{flex-basis:72vw}
+  .formula{grid-template-columns:minmax(0,1fr)}
+  .term{flex-direction:row;align-items:baseline;padding:20px 0;border-bottom:1px solid var(--line)}
+  .term+.term{padding-left:0;border-left:0}
+  .term__op{display:none}
+  .term__word::after{content:" +";color:var(--bronze)}
+  .term:nth-child(3) .term__word::after{content:""}
+  .term .label{flex-direction:column;align-items:flex-end;text-align:right}
+  .pillar__num{grid-column:1/-1}
+  .pillar__title,.pillar__text{grid-column:1/-1}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}
+}
+</style>
+
+<div class="grain" aria-hidden="true"></div>
+
+<header class="site-header" id="top">
+  <div class="wrap header-inner">
+    <nav class="nav-left" aria-label="Розділи">
+      <a class="link-u" href="#story" data-scroll>Історія</a>
+      <a class="link-u" href="#universe" data-scroll>Всесвіт</a>
+      <a class="link-u" href="#philosophy" data-scroll>Філософія</a>
+    </nav>
+    <button class="menu-btn link-u" id="menuOpen" aria-expanded="false" aria-controls="mMenu">Меню</button>
+    <a class="logo" href="#hero" data-scroll aria-label="LOVELINESS — на початок">LOVELINESS</a>
+    <a class="ig-link link-u js-ig" href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram ↗</a>
+  </div>
+</header>
+
+<div class="m-menu" id="mMenu" hidden role="dialog" aria-modal="true" aria-label="Меню">
+  <div class="m-menu__top">
+    <span class="logo">LOVELINESS</span>
+    <button class="label" id="menuClose">Закрити ✕</button>
+  </div>
+  <nav class="m-menu__links">
+    <a href="#story" data-scroll><span>01</span>Історія</a>
+    <a href="#philosophy" data-scroll><span>02</span>Філософія</a>
+    <a href="#universe" data-scroll><span>03</span>Всесвіт</a>
+    <a href="#look" data-scroll><span>04</span>Цілісний образ</a>
+  </nav>
+  <div class="btn-row">
+    <a class="btn btn--light js-ig" href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram ↗</a>
+    <a class="btn btn--light js-tt" href="https://www.tiktok.com/" target="_blank" rel="noopener">TikTok ↗</a>
+    <a class="btn btn--light js-tg" href="https://t.me/" target="_blank" rel="noopener">Telegram ↗</a>
+  </div>
+</div>
+
+<main>
+  <!-- ═══ HERO ═══ -->
+  <section class="hero" id="hero">
+    <div class="hero-mark__wrap" aria-hidden="true"><img class="hero-mark" id="heroMark" src="assets/brand/lily-mark.png" alt="" fetchpriority="high"></div>
+    <div class="wrap grid-12 hero-grid">
+      <div class="hero-top">
+        <span class="label hero-rv">Official Digital Atelier // Est. <span class="js-est">2026</span></span>
+        <span class="label label--muted hero-rv">Сукні · Прикраси · Косметика</span>
+      </div>
+
+      <h1 class="display hero-title">
+        <span class="line"><span class="t-caps">LOVELINESS —</span></span>
+        <span class="line"><span>Всесвіт твоєї</span></span>
+        <span class="line"><span><em>бездоганності.</em></span></span>
+      </h1>
+
+
+      <div class="hero-foot hero-rv">
+        <p class="lead">Сукні, прикраси та косметика, створені в єдиній естетичній гармонії для моментів, які запам’ятовуються назавжди.</p>
+        <a class="btn" href="#universe" data-scroll>Дослідити колекцію <span aria-hidden="true">↓</span></a>
+      </div>
+
+      <nav class="hero-index hero-rv" aria-label="Категорії" id="heroIndex"></nav>
+    </div>
+  </section>
+
+  <!-- ═══ STORY ═══ -->
+  <section class="section" id="story">
+    <div class="wrap grid-12" style="row-gap:40px">
+      <aside class="story-aside">
+        <div class="story-aside__inner">
+          <span class="label">01 / Історія походження</span>
+          <img class="emblem js-emblem" src="assets/brand/lily-emblem.jpg" alt="" aria-hidden="true">
+        </div>
+      </aside>
+      <div class="story-main">
+        <h2 class="display d-l rv">Напередодні особливої події найважче — знайти <em>той самий</em> образ.</h2>
+        <div class="story-cols">
+          <div class="body-text rv">
+            <p class="dropcap">Ми знаємо це відчуття: десятки відкритих вкладок, години примірок і компроміси між тим, що подобається, і тим, що просто підійшло. Саме з цієї втоми від пошуків народився <strong>LOVELINESS</strong>.</p>
+            <p>Ми створили не просто черговий магазин одягу. Ми побудували цілісний всесвіт краси, де тобі більше не потрібно збирати образ по частинах у різних місцях. Від сукні з бездоганною посадкою до фірмових прикрас і косметики, що підкреслює природне сяйво — кожна деталь у LOVELINESS вже створена в ідеальному тандемі з іншою. Ти приходиш за сукнею, а знаходиш завершену версію себе.</p>
+          </div>
+        </div>
+        <blockquote class="pull rv">
+          <span class="label label--accent">Принцип дому</span>
+          <p>Ти приходиш за сукнею, а знаходиш <em>завершену версію себе.</em></p>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PHILOSOPHY ═══ -->
+  <section class="section dark" id="philosophy">
+    <div class="wrap">
+      <div class="grid-12 phil-head">
+        <span class="label label--muted">02 / Філософія дому</span>
+        <h2 class="display d-l rv">Чотири опори <em>Loveliness</em></h2>
+      </div>
+      <div class="pillars" id="pillars"></div>
+    </div>
+  </section>
+
+  <!-- ═══ UNIVERSE ═══ -->
+  <section class="section" id="universe">
+    <div class="wrap">
+      <div class="grid-12 uni-head">
+        <span class="label">03 / Всесвіт</span>
+        <h2 class="display d-l rv">Каталог, де образ <em>вже зібраний</em></h2>
+      </div>
+
+      <div class="tabs" role="tablist" aria-label="Категорії каталогу" id="tabs">
+        <span class="tabs__ink" id="tabInk" aria-hidden="true"></span>
+      </div>
+
+      <div class="grid-12 cat-intro" id="catIntro" aria-live="polite"></div>
+
+      <div id="panel" role="tabpanel">
+        <div class="grid-12 bento" id="bento"></div>
+        <div class="reel" id="reel">
+          <div class="reel__head">
+            <div>
+              <span class="label label--accent">Lookbook Reel</span>
+              <p class="label label--muted" style="margin-top:6px" id="reelCount"></p>
+            </div>
+            <div class="reel__ctrl">
+              <button id="reelPrev" aria-label="Попередні">←</button>
+              <button id="reelNext" aria-label="Наступні">→</button>
+            </div>
+          </div>
+          <div class="reel__track" id="reelTrack" data-lenis-prevent></div>
+          <div class="reel__progress" aria-hidden="true"><span id="reelBar"></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ COMPLETE LOOK ═══ -->
+  <section class="section look" id="look">
+    <div class="wrap">
+      <div class="grid-12 look-head">
+        <span class="label">04 / Цілісний образ</span>
+        <p class="display d-m rv">Формула, за якою ми збираємо <em>кожен</em> вихід.</p>
+      </div>
+
+      <div class="formula rv" id="formula">
+        <button class="term" data-cat="dresses"><span class="term__word">Сукня</span><span class="label label--muted"><span>Силует</span><span>LVL — DRESS</span></span><span class="term__op" aria-hidden="true">+</span></button>
+        <button class="term" data-cat="jewelry"><span class="term__word">Прикраси</span><span class="label label--muted"><span>Світло</span><span>LVL — JEWEL</span></span><span class="term__op" aria-hidden="true">+</span></button>
+        <button class="term" data-cat="cosmetics"><span class="term__word">Косметика</span><span class="label label--muted"><span>Сяйво</span><span>LVL — BEAUTY</span></span></button>
+        <div class="eq" aria-hidden="true">=</div>
+        <div class="result"><span class="result__word">Цілісний образ <em>Loveliness</em></span><span class="label">Total look · одна естетична система</span></div>
+      </div>
+
+      <div class="grid-12 look-cta">
+        <p class="look-cta__text rv">Напиши нам у Direct, Telegram або TikTok, і наші стилісти зберуть для тебе <em>повний образ</em> під твою подію за 15 хвилин.</p>
+        <div class="look-cta__side rv">
+          <div class="stat"><b>15</b><span class="label label--muted">хвилин на добірку<br>сукня · прикраси · макіяж</span></div>
+          <div class="btn-row">
+            <a class="btn btn--solid js-direct" href="https://www.instagram.com/" target="_blank" rel="noopener">Написати в Direct ↗</a>
+            <a class="btn js-tg" href="https://t.me/" target="_blank" rel="noopener">Telegram ↗</a>
+            <a class="btn js-tt" href="https://www.tiktok.com/" target="_blank" rel="noopener">TikTok ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <div class="wrap grid-12 foot-grid">
+    <div class="foot-col">
+      <span class="label label--muted">Ательє</span>
+      <p>Сукні, прикраси та косметика в єдиній естетичній системі. Підбір повного образу онлайн — через Direct, Telegram або TikTok.</p>
+    </div>
+    <div class="foot-col">
+      <span class="label label--muted">Соцмережі</span>
+      <a class="link-u js-ig" href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram ↗</a>
+      <a class="link-u js-tt" href="https://www.tiktok.com/" target="_blank" rel="noopener">TikTok ↗</a>
+      <a class="link-u js-tg" href="https://t.me/" target="_blank" rel="noopener">Telegram ↗</a>
+    </div>
+    <div class="foot-col">
+      <span class="label label--muted">Швидкий зв’язок</span>
+      <a class="link-u js-direct" href="https://www.instagram.com/" target="_blank" rel="noopener">Стиліст у Direct ↗</a>
+      <a class="link-u" href="#hero" data-scroll>Нагору ↑</a>
+    </div>
+  </div>
+  <div class="wordmark" aria-hidden="true">LOVELINESS</div>
+  <div class="wrap">
+    <div class="foot-bottom">
+      <span class="label label--muted">© <span class="js-year">2026</span> LOVELINESS. Усі права захищено.</span>
+      <span class="label label--muted">Official Digital Atelier</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══ LIGHTBOX ═══ -->
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-labelledby="lbTitle">
+  <div class="lb__stage" id="lbStage">
+    <span class="label label--muted lb__count" id="lbCount"></span>
+    <div class="lb__nav">
+      <button id="lbPrev" aria-label="Попередня позиція">←</button>
+      <button id="lbNext" aria-label="Наступна позиція">→</button>
+    </div>
+  </div>
+  <div class="lb__panel" id="lbPanel" data-lenis-prevent>
+    <div class="lb__bar">
+      <span class="label label--accent" id="lbCode"></span>
+      <button class="lb__close link-u" id="lbClose">Закрити ✕</button>
+    </div>
+    <h3 class="lb__title" id="lbTitle"></h3>
+    <div class="body-text" id="lbDesc"></div>
+    <dl class="lb__specs" id="lbSpecs"></dl>
+    <div>
+      <span class="label" style="display:block;margin-bottom:12px">З чим поєднати з нашого всесвіту</span>
+      <div class="pairs" id="lbPairs"></div>
+    </div>
+    <div class="lb__cta">
+      <a class="btn btn--solid js-direct" id="lbAsk" href="https://www.instagram.com/" target="_blank" rel="noopener">Запитати наявність в Instagram Direct ↗</a>
+      <a class="btn js-tg" href="https://t.me/" target="_blank" rel="noopener">Або написати в Telegram ↗</a>
+      <span class="label label--muted">Назви код позиції — стилістка відповість у Direct</span>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+/* ════════════════════════════════════════════════════════════════
+   BRAND CONFIG — заміни на свої реальні посилання
+   ════════════════════════════════════════════════════════════════ */
+const CONFIG = {
+  instagramHandle: 'anasteissshhha_',   // без @
+  tiktokHandle: '_anasteissshhha',      // без @
+  telegramHandle: 'anasteissshhha',     // без @
+  est: '2026',                    // рік у мікро-титрі «EST.»
+};
+
+/* ════════════════════════════════════════════════════════════════
+   BRAND_ASSETS — усі зображення, категорії, назви й описи.
+   Додати фото: скопіюй об'єкт у `items`, вкажи category + src.
+   src: null → показується стильний плейсхолдер «Фото незабаром».
+   focus: object-position для вертикальних кадрів (колажі 16:9 обрізаються до 3:4 / 4:5).
+   pairs: id позицій для блоку «З чим поєднати».
+   ════════════════════════════════════════════════════════════════ */
+const BRAND_ASSETS = {
+  brand: {
+    logo:   'assets/brand/logo.jpg',
+    mark:   'assets/brand/lily-mark.png',   // прозора лілія для фону першого екрана
+    emblem: 'assets/brand/lily-emblem.jpg',
+  },
+
+  categories: [
+    { key: 'dresses',   index: '01', label: 'Сукні',     code: 'DRESS',
+      intro: 'Архітектура <em>жіночності.</em> Силуети, створені для вечорів, які стають історією.' },
+    { key: 'jewelry',   index: '02', label: 'Прикраси',  code: 'JEWEL',
+      intro: 'Фінальний <em>штрих.</em> Світлові акценти, що завершують композицію образу.' },
+    { key: 'cosmetics', index: '03', label: 'Косметика', code: 'BEAUTY',
+      intro: 'Естетика <em>чистого сяйва.</em> Текстури, що зливаються зі шкірою.' },
+  ],
+
+  quotes: {
+    dresses:   'Сукня задає <em>ритм</em> усьому образу. Решта лише підхоплює мелодію.',
+    jewelry:   'Метал, що ловить світло саме там, де <em>потрібно.</em>',
+    cosmetics: 'Шкіра, що виглядає <em>відпочилою</em> навіть о другій ночі.',
+  },
+
+  items: [
+    /* ── СУКНІ ── */
+    {
+      id: 'dress-01', category: 'dresses', code: 'LVL — DRESS 01',
+      src: 'assets/dresses/dress-01.webp', focus: '83% 50%',
+      title: 'Обсидіанова осінь',
+      short: 'Вечірній силует із делікатним драпіруванням, що повторює кожен рух тіла. Високий комір і довжина міні для міста, яке вже вдягнуло осінь.',
+      description: [
+        'Сукня-футляр із щільного трикотажу з асиметричним драпіруванням по лінії стегна. Високий комір видовжує шию, довгі рукави тримають силует чистим, а довжина міні залишає простір для акцентних колготок і масивних черевиків.',
+        'Найкраще звучить у тандемі з довгим вовняним пальто прямого крою: глибокий чорний від коміра до каблука.'
+      ],
+      tone: 'Обсидіан', occasion: 'Осінній вечір · Місто',
+      details: ['Драпований трикотаж', 'Високий комір', 'Довжина міні'],
+      pairs: ['jewel-06', 'beauty-08', 'beauty-02'],
+    },
+    {
+      id: 'dress-02', category: 'dresses', code: 'LVL — DRESS 02',
+      src: 'assets/dresses/dress-02.webp', focus: '100% 50%',
+      title: 'Небесна церемонія',
+      short: 'Мінімалістичний крій з акцентом на лінію плечей та благородну текстуру тканини. Рукави-ліхтарики й довжина міді для дня, коли на тебе дивиться вся зала.',
+      description: [
+        'Приталений ліф із виточками, м’яко розкльошена спідниця нижче коліна і рукави з легким об’ємом біля плеча, зібрані на манжеті. Пудровий блакитний освіжає обличчя і на сцені, і в кадрі.',
+        'Пара до неї — молочні човники на стійкому каблуці з ремінцем навколо щиколотки: впевнений крок на весь вечір.'
+      ],
+      tone: 'Пудровий блакитний', occasion: 'Випускний · Урочистість',
+      details: ['Довжина міді', 'Рукави-ліхтарики', 'Приталений ліф'],
+      pairs: ['jewel-05', 'jewel-07', 'beauty-05'],
+    },
+    {
+      id: 'dress-03', category: 'dresses', code: 'LVL — DRESS 03',
+      src: 'assets/dresses/dress-03.webp', focus: '6% 50%',
+      title: 'Бордо після заходу',
+      short: 'Витончена класика для особливих виходів: бездоганний баланс стриманості та магнетизму. Сітчаста міді на тонких бретелях під строгим чорним жакетом.',
+      description: [
+        'Сукня-комбінація з напівпрозорої сітки кольору витриманого вина, з драпованим ліфом і тонкими бретелями. Подвійний шар тканини дає глибину відтінку, а довжина міді — плавний рух на кожному кроці.',
+        'Чорний жакет вільного крою додає вечору стриманості, босоніжки з леопардовим каблуком — характеру.'
+      ],
+      tone: 'Бордо', occasion: 'Вечеря · Коктейль',
+      details: ['Сітка на підкладці', 'Тонкі бретелі', 'Довжина міді'],
+      pairs: ['jewel-09', 'beauty-04', 'beauty-03'],
+    },
+    {
+      id: 'dress-04', category: 'dresses', code: 'LVL — DRESS 04',
+      src: 'assets/dresses/dress-04.webp', focus: '100% 50%',
+      title: 'Пелюстковий ранок',
+      short: 'Ярусна спідниця, запах на ліфі й бант на талії: романтичний силует, що рухається разом із тобою. Створена для денного світла і фото, які хочеться зберегти.',
+      description: [
+        'Сукня міні з V-подібним запахом, рукавами-буф на манжетах і поясом, що зав’язується пишним бантом. Два яруси спідниці додають об’єму й легкості, не перевантажуючи силует.',
+        'Доповни молочними туфлями з ремінцем, і образ готовий для прогулянки, побачення чи фотосесії.'
+      ],
+      tone: 'Рожева пудра', occasion: 'Побачення · Фотосесія',
+      details: ['Двоярусна спідниця', 'Запах на ліфі', 'Пояс-бант'],
+      pairs: ['jewel-02', 'jewel-01', 'beauty-07'],
+    },
+
+    {
+      id: 'dress-05', category: 'dresses', code: 'LVL — DRESS 05',
+      src: 'assets/dresses/dress-05.webp', focus: '0% 50%',
+      title: 'Літо на набережній',
+      short: 'Біла сукня з відкритими плечима, рукавами-ліхтариками і зав’язкою на ліфі. Легкий силует для теплих вечорів біля води.',
+      description: [
+        'Сукня міні з еластичною лінією плечей, приталеним ліфом із зав’язкою-краплею та пишною спідницею. Рукави-ліхтарики додають романтики, а молочно-білий колір світиться на засмаглій шкірі.',
+        'У тій самій історії живе костюм із блузою на запах і шортами-спідницею. Обидва образи врівноважують чорні мінімалістичні сандалі на тонких ремінцях.'
+      ],
+      tone: 'Молочно-білий', occasion: 'Літня прогулянка · Відпустка',
+      details: ['Відкриті плечі', 'Рукави-ліхтарики', 'Довжина міні'],
+      pairs: ['jewel-03', 'jewel-08', 'beauty-07'],
+    },
+
+    /* ── ПРИКРАСИ ── */
+    {
+      id: 'jewel-01', category: 'jewelry', code: 'LVL — JEWEL 01',
+      src: 'assets/jewelry/jewelry-1.webp', focus: '100% 50%',
+      title: 'Срібна квітка',
+      short: 'П’ятипелюсткові сережки-пусети з каменем у серцевині. Квітка, що ловить світло при кожному повороті голови.',
+      description: ['Сережки-гвоздики у формі квітки: п’ять пелюсток, викладених дрібними каменями, і крупний фіаніт у центрі. Невеликий розмір робить їх доречними щодня, а блиск каменів — на вечірньому виході.'],
+      tone: 'Сріблястий · фіаніти', occasion: 'Щодня · Вечір',
+      details: ['Сережки-пусети', 'Квіткова форма', 'Фіаніти'],
+      pairs: ['dress-04', 'beauty-07'],
+    },
+    {
+      id: 'jewel-02', category: 'jewelry', code: 'LVL — JEWEL 02',
+      src: 'assets/jewelry/jewelry-2.webp', focus: '100% 50%',
+      title: 'Метелик на пальці',
+      short: 'Відкрита каблучка з метеликом у камінні та сріблястою кулькою. Сідає легко, ніби метелик щойно присів.',
+      description: ['Відкрита каблучка з метеликом, крила якого викладені дрібними каменями. Відкрита форма дозволяє підлаштувати розмір. Пасує до ніжних денних образів і стає маленьким подарунком самій собі.'],
+      tone: 'Сріблястий', occasion: 'Щодня · Побачення',
+      details: ['Відкрита каблучка', 'Регульований розмір', 'Інкрустація каменями'],
+      pairs: ['dress-04', 'beauty-01'],
+    },
+    {
+      id: 'jewel-03', category: 'jewelry', code: 'LVL — JEWEL 03',
+      src: 'assets/jewelry/jewelry-3.webp', focus: '100% 50%',
+      title: 'Ромашкове поле',
+      short: 'Кругла підвіска з засушеною ромашкою під прозорою лінзою і каблучка з ромашок. Маленький гербарій, який можна носити з собою.',
+      description: ['Підвіска-медальйон із живою квіткою, застиглою під прозорим склом, на тонкому ланцюжку. У пару до неї — каблучка з ромашок у білій емалі. Літня історія, яка нагадує про сонячні дні навіть узимку.'],
+      tone: 'Сріблястий · біла емаль', occasion: 'Літо · Щодня',
+      details: ['Підвіска-лінза', 'Засушена квітка', 'Каблучка в комплект'],
+      pairs: ['dress-05', 'beauty-07'],
+    },
+    {
+      id: 'jewel-04', category: 'jewelry', code: 'LVL — JEWEL 04',
+      src: 'assets/jewelry/jewelry-4.webp', focus: '100% 50%',
+      title: 'Чотирилисник',
+      short: 'Браслет і кулон із чотирилисником у камінні. Тихий талісман на удачу, що поєднується з будь-якою сукнею.',
+      description: ['Тонкий браслет-ланцюжок із підвісками-конюшинами і кулон у формі чотирилисника, викладений каменями. Лаконічний акцент, створений для гармонійного поєднання як з вечірніми сукнями, так і з базовим гардеробом.'],
+      tone: 'Сріблястий · фіаніти', occasion: 'Щодня · Важлива подія',
+      details: ['Браслет-ланцюжок', 'Кулон-конюшина', 'Комплект'],
+      pairs: ['dress-02', 'beauty-05'],
+    },
+    {
+      id: 'jewel-05', category: 'jewelry', code: 'LVL — JEWEL 05',
+      src: 'assets/jewelry/jewelry-5.webp', focus: '100% 50%',
+      title: 'Перлинна ніжність',
+      short: 'Браслети з рівних перлин: на застібці-тогл і на еластичній основі. Класика, яка робить будь-який образ доглянутим.',
+      description: ['Два браслети з перлин однакового калібру: перший застібається на кільце-тогл, другий легко одягається завдяки еластичній основі. Носи один або обидва разом — перлини м’яко світяться на шкірі в будь-якому освітленні.'],
+      tone: 'Перли · сріблястий', occasion: 'Урочистість · Щодня',
+      details: ['Перлини', 'Застібка-тогл', 'Еластична модель'],
+      pairs: ['dress-02', 'dress-05'],
+    },
+    {
+      id: 'jewel-06', category: 'jewelry', code: 'LVL — JEWEL 06',
+      src: 'assets/jewelry/jewelry-6.webp', focus: '100% 50%',
+      title: 'Серце в долонях',
+      short: 'Кулон із двома кістяними долонями, що тримають червоне серце. Темний романтизм для образів із характером.',
+      description: ['Кольє на ланцюжку з чорненого металу: дві долоні-скелети бережно тримають червоний кристал у формі серця. Сміливий акцент для чорних суконь, осінніх вечорів і тематичних вечірок.'],
+      tone: 'Чорнений метал · червоний кристал', occasion: 'Вечірка · Осінь',
+      details: ['Чорнений метал', 'Червоний кристал', 'Готична естетика'],
+      pairs: ['dress-01', 'beauty-04'],
+    },
+    {
+      id: 'jewel-07', category: 'jewelry', code: 'LVL — JEWEL 07',
+      src: 'assets/jewelry/jewelry-7.webp', focus: '100% 50%',
+      title: 'Глибина океану',
+      short: 'Кольє з композицією синіх і блакитних каменів на тонкому ланцюжку. Колір глибокої води, що освіжає вечірній образ.',
+      description: ['Витончена гра світла у кожній грані: сапфірово-сині й блакитні кристали зібрані в асиметричну композицію на ажурній основі. Регульований ланцюжок дозволяє розмістити акцент точно на лінії ключиць.'],
+      tone: 'Сріблястий · сині кристали', occasion: 'Вечір · Урочистість',
+      details: ['Сині кристали', 'Регульована довжина', 'Кольє'],
+      pairs: ['dress-02', 'beauty-06'],
+    },
+    {
+      id: 'jewel-08', category: 'jewelry', code: 'LVL — JEWEL 08',
+      src: 'assets/jewelry/jewelry-8.webp', focus: '100% 50%',
+      title: 'Якір',
+      short: 'Мініатюрний якір на ланцюжку тонкого плетіння. Морський акцент для літніх образів і тих, хто тримає курс.',
+      description: ['Невеликий кулон-якір на тонкому ланцюжку. Носиться сам по собі або в шарах з іншими ланцюжками. Найкраще звучить із білим, блакитним і смугастим одягом.'],
+      tone: 'Сріблястий', occasion: 'Літо · Подорож',
+      details: ['Кулон-якір', 'Тонкий ланцюжок', 'Морська тема'],
+      pairs: ['dress-05', 'beauty-01'],
+    },
+    {
+      id: 'jewel-09', category: 'jewelry', code: 'LVL — JEWEL 09',
+      src: 'assets/jewelry/jewelry-9.webp', focus: '100% 50%',
+      title: 'Нота',
+      short: 'Кулон-завиток із трьома каменями, що спадають, як ноти з нотного стану. Тонкий блиск біля ключиць для вечорів із живою музикою.',
+      description: ['Плавний завиток металу утримує три фіаніти, зібрані краплею. Кулон висить на тонкому ланцюжку й лягає точно в ямку між ключицями. Невагомий, але помітний акцент для вечірніх суконь з відкритою шиєю.'],
+      tone: 'Сріблястий · фіаніти', occasion: 'Концерт · Вечір',
+      details: ['Кулон-завиток', 'Три фіаніти', 'Тонкий ланцюжок'],
+      pairs: ['dress-03', 'beauty-03'],
+    },
+    {
+      id: 'jewel-10', category: 'jewelry', code: 'LVL — JEWEL 10',
+      src: 'assets/jewelry/jewelry-10.webp', focus: '100% 50%',
+      title: 'Золоте серце',
+      short: 'Контурне серце із золотистого металу з перлиною всередині. Тепле сяйво, яке пасує до ніжних і світлих суконь.',
+      description: ['Геометричні форми з м’яким металевим сяйвом: контур серця на золотистому ланцюжку, а в ньому — перлина, ніби крапля світла. Чудовий подарунок і щоденний талісман.'],
+      tone: 'Золотистий · перлина', occasion: 'Побачення · Подарунок',
+      details: ['Кулон-серце', 'Перлина', 'Золотисте покриття'],
+      pairs: ['dress-04', 'beauty-08'],
+    },
+
+    /* ── КОСМЕТИКА ── */
+    {
+      id: 'beauty-01', category: 'cosmetics', code: 'LVL — BEAUTY 01',
+      src: 'assets/cosmetics/beauty-1.webp', focus: '100% 50%',
+      title: 'Мрія в пелюстках',
+      brand: 'Fabien Marché · Mon Rêve',
+      short: 'Парфумована вода в рожевому флаконі, у настрої півоній і соковитого грейпфрута. Аромат, що звучить як ранок у весняному саду.',
+      description: ['Ніжний квітковий аромат у прозорому рожевому флаконі. Ритуал краси у флаконі: делікатно підкреслює образ і не перевантажує його. Створений для світлих суконь, прогулянок і перших теплих днів.'],
+      tone: 'Квітково-фруктовий', occasion: 'День · Весна',
+      details: ['Парфумована вода', 'Квітковий настрій'],
+      pairs: ['dress-04', 'jewel-02'],
+    },
+    {
+      id: 'beauty-02', category: 'cosmetics', code: 'LVL — BEAUTY 02',
+      src: 'assets/cosmetics/beauty-2.webp', focus: '100% 50%',
+      title: 'Чорна ваніль',
+      brand: 'UKR Beauty · Black Vanilla',
+      short: 'Теплий аромат у настрої ванілі, карамелі й деревини. Огортає, як кашемір у прохолодний вечір.',
+      description: ['Глибока ванільна композиція в класичному флаконі із золотистою кришкою. Звучить затишно і чуттєво водночас, тому пасує і до осіннього пальта, і до чорної вечірньої сукні.'],
+      tone: 'Гурманський · теплий', occasion: 'Вечір · Осінь',
+      details: ['Парфуми унісекс', 'Ванільний акорд'],
+      pairs: ['dress-01', 'jewel-06'],
+    },
+    {
+      id: 'beauty-03', category: 'cosmetics', code: 'LVL — BEAUTY 03',
+      src: 'assets/cosmetics/beauty-3.webp', focus: '100% 50%',
+      title: 'Коктейль для губ',
+      brand: 'GlamBee · Lip Cocktail / Veil Lip Gloss',
+      short: 'Тінти й блиски у ягідних і какао-відтінках з вологим сяйвом. Губи, ніби після келиха вишневого коктейлю.',
+      description: ['Набір рідких текстур для губ: напівпрозорі тінти Lip Cocktail і блиски Veil із дзеркальним фінішем. Наноси один шар для природного відтінку або кілька для насиченого вечірнього кольору.'],
+      tone: 'Вишня · какао', occasion: 'Вечір · Побачення',
+      details: ['Блиск для губ', 'Вологий фініш', 'Наростаюче покриття'],
+      pairs: ['dress-03', 'jewel-10'],
+    },
+    {
+      id: 'beauty-04', category: 'cosmetics', code: 'LVL — BEAUTY 04',
+      src: 'assets/cosmetics/beauty-4.webp', focus: '100% 50%',
+      title: 'Червона класика',
+      brand: 'Maybelline · SuperStay Matte Ink',
+      short: 'Рідка матова помада глибокого винного відтінку. Оксамитовий фініш і глибокий пігмент, що тримається протягом усього вечора.',
+      description: ['Класичний червоно-винний колір, який робить образ завершеним без жодних інших акцентів. Рідка формула висихає в матовий фініш і не потребує оновлення між тостами.'],
+      tone: 'Винно-червоний', occasion: 'Вечір · Подія',
+      details: ['Рідка помада', 'Матовий фініш', 'Стійкий пігмент'],
+      pairs: ['dress-03', 'jewel-06'],
+    },
+    {
+      id: 'beauty-05', category: 'cosmetics', code: 'LVL — BEAUTY 05',
+      src: 'assets/cosmetics/beauty-5.webp', focus: '100% 50%',
+      title: 'Друга шкіра',
+      brand: 'Patricia Ledo · Soft Velvet Foundation',
+      short: 'Тональна основа з м’яким оксамитовим фінішем. Вирівнює тон і зливається зі шкірою.',
+      description: ['Легка тональна основа, що дає рівний тон і м’який оксамитовий фініш без ефекту маски. Наноситься пензлем або спонжем і виглядає природно і в денному світлі, і під спалахом камери.'],
+      tone: 'Нюдові відтінки', occasion: 'Щодня · Фотосесія',
+      details: ['Тональна основа', 'Оксамитовий фініш'],
+      pairs: ['dress-02', 'jewel-04'],
+    },
+    {
+      id: 'beauty-06', category: 'cosmetics', code: 'LVL — BEAUTY 06',
+      src: 'assets/cosmetics/beauty-6.webp', focus: '100% 50%',
+      title: 'Погляд-метелик',
+      brand: 'Daisy · Lumilash',
+      short: 'Туш для об’єму й довжини, що розкриває погляд і розділяє кожну вію.',
+      description: ['Туш глибокого чорного кольору з пензликом, що підхоплює вії від самого кореня. Один шар дає природну довжину, два — виразний вечірній об’єм.'],
+      tone: 'Глибокий чорний', occasion: 'Щодня · Вечір',
+      details: ['Туш для вій', 'Об’єм і довжина'],
+      pairs: ['dress-02', 'jewel-07'],
+    },
+    {
+      id: 'beauty-07', category: 'cosmetics', code: 'LVL — BEAUTY 07',
+      src: 'assets/cosmetics/beauty-7.webp', focus: '100% 50%',
+      title: 'Pretty Lips',
+      brand: 'GlamBee · Pretty Lips Lip Oil',
+      short: 'Олійка для губ із прозорим сяйвом. Невагома текстура доглядає і дає ефект соковитих губ.',
+      description: ['Прозора олійка з легким рожевим підтоном. Пом’якшує губи, дає вологий блиск і чудово працює як окремо, так і поверх помади. Невелика, легко поміщається в найменшу вечірню сумочку.'],
+      tone: 'Прозорий рожевий', occasion: 'Щодня · Літо',
+      details: ['Олійка для губ', 'Догляд + блиск'],
+      pairs: ['dress-05', 'jewel-01'],
+    },
+    {
+      id: 'beauty-08', category: 'cosmetics', code: 'LVL — BEAUTY 08',
+      src: 'assets/cosmetics/beauty-8.webp', focus: '100% 50%',
+      title: 'Народжена в коричневому',
+      brand: 'Daisy · Born in Brown Lip Butter',
+      short: 'Масло для губ у теплому шоколадному відтінку. Колір кави з корицею для осінніх образів.',
+      description: ['Кремова текстура, що доглядає за губами і дає напівпрозорий шоколадний колір. Пасує до чорного, бордо і всіх відтінків осені.'],
+      tone: 'Шоколадний', occasion: 'Осінь · Щодня',
+      details: ['Масло для губ', 'Кремова текстура'],
+      pairs: ['dress-01', 'jewel-06'],
+    },
+  ],
+};
+
+
+/* ════════════════════════════════════════════════════════════════
+   PILLARS
+   ════════════════════════════════════════════════════════════════ */
+const PILLARS = [
+  ['01', 'Цілісність образу', 'Total Look Harmony', 'Тобі не потрібно думати, чи пасують сережки до вирізу сукні, а відтінок блиску — до настрою вечора. Ми вже поєднали все в єдину естетичну систему.'],
+  ['02', 'Безкомпромісна посадка', 'Sculpted Aesthetics', 'Кожна сукня конструюється так, щоб підкреслювати пластику тіла, дарувати впевненість і не сковувати рухів під час головних подій твого життя.'],
+  ['03', 'Тактильна розкіш', 'Sensory Details', 'Від прохолодного блиску прикрас до невагомих текстур косметики та благородних тканин — ми обираємо матеріали, які відчуваються на шкірі так само розкішно, як і виглядають у кадрі.'],
+  ['04', 'Магнетизм моменту', 'Event-Ready Confidence', 'LOVELINESS створений для днів, коли погляди прикуті до тебе. Ми беремо на себе всі деталі образу, залишаючи тобі головне — насолоджуватися моментом.'],
+];
+
+/* ════════════════════════════════════════════════════════════════
+   APP
+   ════════════════════════════════════════════════════════════════ */
+(() => {
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const hasGsap = typeof window.gsap !== 'undefined' && !reduce;
+  const byId = Object.fromEntries(BRAND_ASSETS.items.map(i => [i.id, i]));
+  const itemsOf = key => BRAND_ASSETS.items.filter(i => i.category === key);
+  const catOf = key => BRAND_ASSETS.categories.find(c => c.key === key);
+
+  /* links */
+  const ig = CONFIG.instagramHandle ? `https://www.instagram.com/${CONFIG.instagramHandle}/` : 'https://www.instagram.com/';
+  const direct = CONFIG.instagramHandle ? `https://ig.me/m/${CONFIG.instagramHandle}` : ig;
+  const tt = CONFIG.tiktokHandle ? `https://www.tiktok.com/@${CONFIG.tiktokHandle}` : 'https://www.tiktok.com/';
+  $$('.js-ig').forEach(a => a.href = ig);
+  $$('.js-direct').forEach(a => a.href = direct);
+  $$('.js-tt').forEach(a => a.href = tt);
+  const tg = CONFIG.telegramHandle ? `https://t.me/${CONFIG.telegramHandle}` : 'https://t.me/';
+  $$('.js-tg').forEach(a => a.href = tg);
+  $$('.js-est').forEach(e => e.textContent = CONFIG.est);
+  $$('.js-year').forEach(e => e.textContent = new Date().getFullYear());
+  $('#heroMark').src = BRAND_ASSETS.brand.mark;
+  $$('.js-emblem').forEach(i => i.src = BRAND_ASSETS.brand.emblem);
+
+  /* media markup */
+  const media = (item, eager) => item.src
+    ? `<img src="${esc(item.src)}" alt="${esc(item.title)} — ${esc(item.code)}" style="object-position:${esc(item.focus || '50% 50%')}" ${eager ? '' : 'loading="lazy"'} decoding="async">`
+    : `<div class="ph"><img src="${esc(BRAND_ASSETS.brand.emblem)}" alt=""><span class="label">Фото незабаром</span></div>`;
+
+  /* ── smooth scroll ── */
+  let lenis = null;
+  if (!reduce && typeof window.Lenis !== 'undefined') {
+    lenis = new Lenis({ duration: 1.15, easing: t => 1 - Math.pow(1 - t, 4), smoothWheel: true });
+    if (hasGsap) {
+      gsap.registerPlugin(ScrollTrigger);
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add(t => lenis.raf(t * 1000));
+      gsap.ticker.lagSmoothing(0);
+    } else {
+      const raf = t => { lenis.raf(t); requestAnimationFrame(raf); };
+      requestAnimationFrame(raf);
+    }
+  } else if (hasGsap) gsap.registerPlugin(ScrollTrigger);
+
+  const headerH = () => $('.site-header').offsetHeight;
+  const scrollToEl = el => {
+    if (!el) return;
+    if (lenis) lenis.scrollTo(el, { offset: -headerH(), duration: 1.4 });
+    else window.scrollTo({ top: el.getBoundingClientRect().top + scrollY - headerH(), behavior: reduce ? 'auto' : 'smooth' });
+  };
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a[data-scroll]');
+    if (!a) return;
+    const id = a.getAttribute('href').slice(1);
+    e.preventDefault();
+    closeMenu();
+    scrollToEl(document.getElementById(id));
+  });
+
+  /* ── mobile menu ── */
+  const menu = $('#mMenu'), menuOpen = $('#menuOpen');
+  function closeMenu() {
+    if (menu.hidden) return;
+    menu.hidden = true; menuOpen.setAttribute('aria-expanded', 'false');
+    lenis && lenis.start(); menuOpen.focus({ preventScroll: true });
+  }
+  menuOpen.addEventListener('click', () => {
+    menu.hidden = false; menuOpen.setAttribute('aria-expanded', 'true');
+    lenis && lenis.stop(); $('#menuClose').focus();
+    if (hasGsap) gsap.from('.m-menu__links a', { y: 40, opacity: 0, duration: 1, stagger: .07, ease: 'expo.out' });
+  });
+  $('#menuClose').addEventListener('click', closeMenu);
+
+  /* ── pillars ── */
+  $('#pillars').innerHTML = PILLARS.map(([n, t, en, d]) => `
+    <article class="pillar grid-12 rv">
+      <span class="pillar__num">${n} —</span>
+      <div class="pillar__title"><h3>${t}</h3><span class="label label--muted">${en}</span></div>
+      <p class="pillar__text">${d}</p>
+    </article>`).join('');
+
+  /* ── hero index ── */
+  $('#heroIndex').innerHTML = BRAND_ASSETS.categories.map(c =>
+    `<a class="label link-u" href="#universe" data-cat="${c.key}"><span>${c.index}. ${c.label}</span><span class="label--muted">(${String(itemsOf(c.key).length).padStart(2,'0')})</span></a>`).join('');
+
+  /* ════ UNIVERSE ════ */
+  const tabsEl = $('#tabs'), ink = $('#tabInk');
+  BRAND_ASSETS.categories.forEach(c => {
+    const b = document.createElement('button');
+    b.className = 'tab'; b.setAttribute('role', 'tab'); b.id = `tab-${c.key}`; b.dataset.cat = c.key;
+    b.setAttribute('aria-controls', 'panel'); b.setAttribute('aria-selected', 'false'); b.tabIndex = -1;
+    b.innerHTML = `<span class="tab__name">${c.label}</span>`;
+    tabsEl.appendChild(b);
+  });
+  const tabs = $$('.tab', tabsEl);
+  let current = null;
+
+  function moveInk() {
+    const t = tabs.find(t => t.dataset.cat === current); if (!t) return;
+    ink.style.width = t.offsetWidth + 'px';
+    ink.style.transform = `translateX(${t.offsetLeft}px)`;
+    ink.style.top = (t.offsetTop + t.offsetHeight) + 'px'; ink.style.bottom = 'auto';
+  }
+
+  const cap = (it, i) => `
+    <div class="item__cap">
+      <span class="label item__code">${esc(it.code)}</span>
+      <span class="item__title">${esc(it.title)}</span>
+      <p class="item__desc">${esc(it.short)}</p>
+      <div class="item__meta"><span class="label label--accent">${esc(it.tone)}</span><span class="label label--muted">${esc(it.occasion)}</span></div>
+    </div>`;
+
+  const BENTO_MAX = 6;   // ≤6 позицій → усі в сітці; більше → перші 4 у сітці, решта у Reel
+  const split = key => { const all = itemsOf(key); return all.length <= BENTO_MAX ? [all, []] : [all.slice(0, 4), all.slice(4)]; };
+  function renderBento(key) {
+    const list = split(key)[0];
+    const bento = $('#bento');
+    let html = '';
+    list.forEach((it, i) => {
+      const slot = i % 4;
+      html += `<article class="item slot-${slot}"><button class="item__btn" data-open="${it.id}" aria-label="Відкрити ${esc(it.title)}">
+        <div class="frame">${media(it, i < 2)}</div></button>${cap(it, i)}</article>`;
+      if (slot === 3 || (i === list.length - 1 && slot === 1)) {
+        html += `<blockquote class="bento-quote"><span class="label label--accent">Нотатка стилістки</span><p style="margin-top:14px">${BRAND_ASSETS.quotes[key] || ''}</p></blockquote>`;
+      }
+    });
+    bento.innerHTML = html;
+  }
+
+  function renderReel(key) {
+    const list = split(key)[1];
+    $('#reel').hidden = !list.length;
+    $('#reelCount').textContent = `Ще ${String(list.length).padStart(2, '0')} · ${matchMedia('(hover:hover) and (pointer:fine)').matches ? 'крути коліщатко або тягни мишкою' : 'гортай пальцем'}, торкнись фото`;
+    $('#reelTrack').innerHTML = list.map(it => `
+      <article class="item reel__item"><button class="item__btn" data-open="${it.id}" aria-label="Відкрити ${esc(it.title)}">
+        <div class="frame">${media(it)}</div></button>
+        <div class="item__cap"><span class="label item__code">${esc(it.code)}</span><span class="item__title">${esc(it.title)}</span><span class="label label--muted">${esc(it.tone)}</span></div>
+      </article>`).join('');
+    $('#reelTrack').scrollLeft = 0; updateReelBar();
+  }
+
+  function renderIntro(key) {
+    const c = catOf(key), n = itemsOf(key).length;
+    $('#catIntro').innerHTML = `
+      <div class="cat-intro__idx"><span class="label label--accent">Розділ ${c.index} / 03</span><span class="label label--muted">${String(n).padStart(2,'0')} ${n === 1 ? 'позиція' : (n > 1 && n < 5 ? 'позиції' : 'позицій')} · LVL — ${c.code}</span></div>
+      <p class="cat-intro__text">${c.intro}</p>`;
+  }
+
+  function selectCat(key, { animate = true, focus = false } = {}) {
+    if (key === current) return;
+    current = key;
+    tabs.forEach(t => {
+      const on = t.dataset.cat === key;
+      t.setAttribute('aria-selected', on); t.tabIndex = on ? 0 : -1;
+      if (on) { $('#panel').setAttribute('aria-labelledby', t.id); if (focus) t.focus(); }
+    });
+    moveInk();
+    const draw = () => { renderIntro(key); renderBento(key); renderReel(key); if (hasGsap) ScrollTrigger.refresh(); };
+    if (hasGsap && animate) {
+      const tgts = ['#catIntro', '#bento', '#reel'];
+      gsap.to(tgts, { opacity: 0, y: 16, duration: .35, ease: 'power2.in', onComplete: () => {
+        draw();
+        gsap.fromTo('#catIntro', { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 1.1, ease: 'expo.out' });
+        gsap.set(['#bento', '#reel'], { opacity: 1, y: 0 });
+        gsap.fromTo('#bento .item, #bento .bento-quote', { opacity: 0, y: 48 }, { opacity: 1, y: 0, duration: 1.3, stagger: .09, ease: 'expo.out' });
+        gsap.fromTo('#reel', { opacity: 0 }, { opacity: 1, duration: 1, delay: .2 });
+      }});
+    } else draw();
+  }
+
+  tabs.forEach(t => t.addEventListener('click', () => selectCat(t.dataset.cat)));
+  tabsEl.addEventListener('keydown', e => {
+    if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(e.key)) return;
+    e.preventDefault();
+    const i = tabs.findIndex(t => t.dataset.cat === current);
+    const n = e.key === 'Home' ? 0 : e.key === 'End' ? tabs.length - 1 : (i + (e.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length;
+    selectCat(tabs[n].dataset.cat, { focus: true });
+  });
+  addEventListener('resize', moveInk);
+  document.fonts && document.fonts.ready.then(moveInk);
+
+  // jump-to-category links (hero index, formula)
+  document.addEventListener('click', e => {
+    const a = e.target.closest('[data-cat]:not(.tab)');
+    if (!a) return;
+    e.preventDefault();
+    selectCat(a.dataset.cat);
+    scrollToEl($('#tabs'));
+  });
+
+  /* reel controls + drag */
+  const track = $('#reelTrack');
+  function updateReelBar() {
+    const max = track.scrollWidth - track.clientWidth;
+    const vis = track.scrollWidth ? track.clientWidth / track.scrollWidth : 1;
+    const p = max > 0 ? track.scrollLeft / max : 0;
+    const bar = $('#reelBar');
+    bar.style.width = (Math.min(vis, 1) * 100) + '%';
+    bar.style.transform = `translateX(${p * (1 / Math.max(vis, .0001) - 1) * 100}%)`;
+  }
+  track.addEventListener('scroll', updateReelBar, { passive: true });
+  addEventListener('resize', updateReelBar);
+  const step = () => (track.querySelector('.reel__item')?.offsetWidth || 300) + 20;
+  $('#reelPrev').addEventListener('click', () => track.scrollBy({ left: -step(), behavior: 'smooth' }));
+  $('#reelNext').addEventListener('click', () => track.scrollBy({ left: step(), behavior: 'smooth' }));
+  /* mouse wheel → smooth horizontal scroll; at the ends the page keeps scrolling */
+  let wTarget = null, wRaf = null;
+  const wTick = () => {
+    const diff = wTarget - track.scrollLeft;
+    if (Math.abs(diff) < 1) { track.scrollLeft = wTarget; wTarget = null; wRaf = null; return; }
+    track.scrollLeft += Math.sign(diff) * Math.max(1, Math.abs(diff) * 0.14);
+    wRaf = requestAnimationFrame(wTick);
+  };
+  track.addEventListener('wheel', e => {
+    if (e.ctrlKey) return;
+    const max = track.scrollWidth - track.clientWidth;
+    const d = (Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY) * (e.deltaMode === 1 ? 40 : 1);
+    const cur = wTarget ?? track.scrollLeft;
+    if (max <= 0 || (cur <= 0 && d < 0) || (cur >= max - 1 && d > 0)) {
+      if (lenis) { e.preventDefault(); lenis.scrollTo(lenis.targetScroll + d); }
+      return;
+    }
+    e.preventDefault();
+    wTarget = Math.max(0, Math.min(max, cur + d * 1.3));
+    if (reduce) { track.scrollLeft = wTarget; wTarget = null; return; }
+    if (!wRaf) wRaf = requestAnimationFrame(wTick);
+  }, { passive: false });
+  const stopWheel = () => { if (wRaf) cancelAnimationFrame(wRaf); wRaf = null; wTarget = null; };
+  track.addEventListener('pointerdown', stopWheel);
+  $('#reelPrev').addEventListener('click', stopWheel, true);
+  $('#reelNext').addEventListener('click', stopWheel, true);
+
+  let drag = null, moved = false;
+  track.addEventListener('pointerdown', e => {
+    if (e.pointerType !== 'mouse') return;
+    drag = { x: e.clientX, s: track.scrollLeft }; moved = false;
+  });
+  addEventListener('pointermove', e => {
+    if (!drag) return;
+    const dx = e.clientX - drag.x;
+    if (Math.abs(dx) > 4) { moved = true; track.classList.add('is-drag'); }
+    track.scrollLeft = drag.s - dx;
+  });
+  addEventListener('pointerup', () => { drag = null; track.classList.remove('is-drag'); });
+  track.addEventListener('click', e => { if (moved) { e.stopPropagation(); e.preventDefault(); moved = false; } }, true);
+
+  /* ════ LIGHTBOX ════ */
+  const lb = $('#lb'), stage = $('#lbStage');
+  let lbList = [], lbIdx = 0, lastFocus = null;
+
+  function renderLb() {
+    const it = lbList[lbIdx];
+    $$('.lb__media', stage).forEach(n => n.remove());
+    const wrap = document.createElement('div');
+    wrap.className = 'lb__media';
+    wrap.style.cssText = 'width:100%;height:100%;display:grid;place-items:center;min-height:0';
+    wrap.innerHTML = it.src
+      ? `<img src="${esc(it.src)}" alt="${esc(it.title)} — ${esc(it.code)}">`
+      : `<div class="ph"><img src="${esc(BRAND_ASSETS.brand.emblem)}" alt=""><span class="label">Фото незабаром</span></div>`;
+    stage.prepend(wrap);
+    $('#lbCount').textContent = `${String(lbIdx + 1).padStart(2, '0')} / ${String(lbList.length).padStart(2, '0')} · ${catOf(it.category).label}`;
+    $('#lbCode').textContent = it.code;
+    $('#lbTitle').innerHTML = esc(it.title).replace(/\s(\S+)$/, ' <em>$1</em>');
+    $('#lbDesc').innerHTML = (it.description || [it.short]).map(p => `<p>${esc(p)}</p>`).join('');
+    $('#lbSpecs').innerHTML = [
+      ['Бренд', it.brand], ['Відтінок', it.tone], ['Привід', it.occasion], ['Деталі', (it.details || []).join(' · ')]
+    ].filter(r => r[1]).map(([k, v]) => `<dt class="label label--muted">${k}</dt><dd>${esc(v)}</dd>`).join('');
+    $('#lbPairs').innerHTML = (it.pairs || []).map(id => byId[id]).filter(Boolean).map(p => `
+      <button class="pair" data-pair="${p.id}">
+        <span class="pair__thumb">${media(p)}</span>
+        <span><span class="label label--muted" style="display:block;margin-bottom:4px">${esc(p.code)}</span><span class="pair__name">${esc(p.title)}</span></span>
+        <span class="label" aria-hidden="true">→</span>
+      </button>`).join('');
+    $('#lbAsk').href = direct;
+    $('#lbPanel').scrollTop = 0;
+    const single = lbList.length < 2;
+    $('#lbPrev').hidden = single; $('#lbNext').hidden = single;
+    if (hasGsap) {
+      gsap.fromTo(wrap, { opacity: 0, scale: 1.03 }, { opacity: 1, scale: 1, duration: 1.2, ease: 'expo.out' });
+      gsap.fromTo('#lbPanel > *', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 1, stagger: .05, ease: 'expo.out' });
+    }
+  }
+
+  function openLb(id) {
+    const it = byId[id]; if (!it) return;
+    lbList = itemsOf(it.category); lbIdx = lbList.findIndex(x => x.id === id);
+    if (lb.hidden) {
+      lastFocus = document.activeElement;
+      lb.hidden = false; lenis && lenis.stop(); document.documentElement.style.overflow = 'hidden';
+      if (hasGsap) gsap.fromTo(lb, { clipPath: 'inset(100% 0 0 0)' }, { clipPath: 'inset(0% 0 0 0)', duration: 1, ease: 'expo.out', clearProps: 'clipPath' });
+    }
+    renderLb();
+    $('#lbClose').focus({ preventScroll: true });
+  }
+  function closeLb() {
+    const done = () => { lb.hidden = true; lenis && lenis.start(); document.documentElement.style.overflow = ''; lastFocus && lastFocus.focus({ preventScroll: true }); };
+    if (hasGsap) gsap.to(lb, { clipPath: 'inset(0 0 100% 0)', duration: .7, ease: 'expo.inOut', onComplete: () => { gsap.set(lb, { clearProps: 'clipPath' }); done(); } });
+    else done();
+  }
+  const go = d => { lbIdx = (lbIdx + d + lbList.length) % lbList.length; renderLb(); };
+
+  document.addEventListener('click', e => {
+    const o = e.target.closest('[data-open]'); if (o) { openLb(o.dataset.open); return; }
+    const p = e.target.closest('[data-pair]'); if (p) openLb(p.dataset.pair);
+  });
+  $('#lbClose').addEventListener('click', closeLb);
+  $('#lbPrev').addEventListener('click', () => go(-1));
+  $('#lbNext').addEventListener('click', () => go(1));
+  document.addEventListener('keydown', e => {
+    if (!menu.hidden && e.key === 'Escape') return closeMenu();
+    if (lb.hidden) return;
+    if (e.key === 'Escape') closeLb();
+    else if (e.key === 'ArrowRight') go(1);
+    else if (e.key === 'ArrowLeft') go(-1);
+    else if (e.key === 'Tab') {
+      const f = $$('button:not([hidden]), a[href]', lb).filter(x => x.offsetParent !== null);
+      if (!f.length) return;
+      if (e.shiftKey && document.activeElement === f[0]) { e.preventDefault(); f.at(-1).focus(); }
+      else if (!e.shiftKey && document.activeElement === f.at(-1)) { e.preventDefault(); f[0].focus(); }
+    }
+  });
+  // swipe
+  let sx = null, sy = null;
+  stage.addEventListener('touchstart', e => { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
+  stage.addEventListener('touchend', e => {
+    if (sx === null) return;
+    const dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.3 && lbList.length > 1) go(dx < 0 ? 1 : -1);
+    sx = sy = null;
+  });
+
+  /* ── initial render ── */
+  selectCat('dresses', { animate: false });
+
+  /* ════ MOTION ════ */
+  if (hasGsap) {
+    const E = 'expo.out';
+    gsap.from('.hero-title .line > span', { yPercent: 110, duration: 1.5, stagger: .1, ease: E, delay: .1 });
+    gsap.from('.hero-rv', { opacity: 0, y: 24, duration: 1.4, stagger: .1, ease: E, delay: .35 });
+    gsap.from('.hero-mark__wrap', { opacity: 0, scale: 1.08, duration: 2.6, ease: E, delay: .2 });
+    gsap.to('.hero-mark__wrap', { yPercent: 14, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
+
+    $$('.rv').forEach(el => {
+      gsap.from(el, { y: 44, opacity: .15, duration: 1.4, ease: E, scrollTrigger: { trigger: el, start: 'top 88%', once: true } });
+    });
+    gsap.from('#bento .frame img', { scale: 1.08, duration: 1.8, ease: E, clearProps: 'transform', scrollTrigger: { trigger: '#bento', start: 'top 80%', once: true } });
+    gsap.to('.wordmark', { xPercent: -3, ease: 'none', scrollTrigger: { trigger: '.footer', start: 'top bottom', end: 'bottom bottom', scrub: true } });
+    addEventListener('load', () => ScrollTrigger.refresh());
+  }
+})();
+</script>
